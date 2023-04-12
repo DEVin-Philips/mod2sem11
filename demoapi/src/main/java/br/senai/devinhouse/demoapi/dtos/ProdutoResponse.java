@@ -6,7 +6,7 @@ public class ProdutoResponse {
     private String nome;
     private String descricao;
     private double preco;
-    private int qtdEstoque;
+    private int quantidadeEstoque;
     private Categoria categoria;
 
     public String getNome() {
@@ -33,12 +33,12 @@ public class ProdutoResponse {
         this.preco = preco;
     }
 
-    public int getQtdEstoque() {
-        return qtdEstoque;
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setQtdEstoque(int qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
     public Categoria getCategoria() {

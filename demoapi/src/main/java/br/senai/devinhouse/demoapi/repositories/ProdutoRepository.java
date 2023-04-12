@@ -20,4 +20,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
     @Query("SELECT p FROM Produto p WHERE p.categoria.nome = :nomeCategoria")
     List<Produto> findByNomeDaCategoria(String nomeCategoria);
 
+    @Query("SELECT p FROM Produto p WHERE p.preco BETWEEN :precoMin AND :precoMax")
+    List<Produto> findBetweenPreco(double precoMin, double precoMax);
+
+    List<Produto> findByPrecoBetween(double precoMin, double precoMax);
 }

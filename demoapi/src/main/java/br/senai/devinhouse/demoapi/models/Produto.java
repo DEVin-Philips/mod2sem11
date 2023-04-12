@@ -1,22 +1,25 @@
 package br.senai.devinhouse.demoapi.models;
 
+import br.senai.devinhouse.demoapi.dtos.ProdutoRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-@Entity(name = "produtos")
+@Entity
+@Table(name = "produtos")
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String descricao;
-    private double preco;
+    private Double preco;
     @Column(name = "qtd_estoque")
-    private int qtdEstoque;
+    private Integer qtdEstoque;
     @ManyToOne
     private Categoria categoria;
 
@@ -44,7 +47,7 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
@@ -52,7 +55,7 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getQtdEstoque() {
+    public Integer getQtdEstoque() {
         return qtdEstoque;
     }
 
