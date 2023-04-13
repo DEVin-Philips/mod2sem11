@@ -22,6 +22,8 @@ public class Produto {
     private Integer qtdEstoque;
     @ManyToOne
     private Categoria categoria;
+    @Column(nullable = false, columnDefinition = "CHAR(1) DEFAULT 1")
+    private char ativo;
 
     public int getId() {
         return id;
@@ -51,16 +53,8 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
     public Integer getQtdEstoque() {
         return qtdEstoque;
-    }
-
-    public void setQtdEstoque(int qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
     }
 
     public Categoria getCategoria() {
@@ -69,5 +63,21 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public void setQtdEstoque(Integer qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
+    }
+
+    public char getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(char ativo) {
+        this.ativo = ativo;
     }
 }
