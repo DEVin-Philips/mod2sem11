@@ -22,7 +22,7 @@ public class Produto {
     private Integer qtdEstoque;
     @ManyToOne
     private Categoria categoria;
-    @Column(nullable = false, columnDefinition = "CHAR(1) DEFAULT 1")
+    @Column(nullable = false, columnDefinition = "CHAR(1) DEFAULT '1'")
     private char ativo;
 
     public int getId() {

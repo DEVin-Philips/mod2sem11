@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/produtos/1",
+					"raw": "http://localhost:8080/produtos/1987321987",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -19,7 +19,7 @@
 					"port": "8080",
 					"path": [
 						"produtos",
-						"1"
+						"1987321987"
 					]
 				}
 			},
@@ -31,7 +31,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/produtos?precoMin=120&precoMax=250",
+					"raw": "http://localhost:8080/produtos?size=3&page=0&sort=nome,desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -43,11 +43,13 @@
 					"query": [
 						{
 							"key": "precoMin",
-							"value": "120"
+							"value": "120",
+							"disabled": true
 						},
 						{
 							"key": "precoMax",
-							"value": "250"
+							"value": "250",
+							"disabled": true
 						},
 						{
 							"key": "nome",
@@ -55,9 +57,16 @@
 							"disabled": true
 						},
 						{
-							"key": "guardaChuva",
-							"value": null,
-							"disabled": true
+							"key": "size",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "sort",
+							"value": "nome,desc"
 						}
 					]
 				}
@@ -65,13 +74,19 @@
 			"response": []
 		},
 		{
-			"name": "Cadatra Produto",
+			"name": "Cadastra Produto",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "pt-br",
+						"type": "default"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nome\": \"Livro Java Como Programar\",\r\n    \"descricao\": \"Livro didático da linguagem de programação Java\",\r\n    \"preco\": 149.99,\r\n    \"qtdEstoque\": 20,\r\n    \"categoria\": {\r\n        \"id\": 1,\r\n        \"nome\": \"livros\"\r\n    }\r\n}",
+					"raw": "{\r\n    \r\n    \"descricao\": \"DEVinHouse 4\",\r\n    \r\n    \"qtdEstoque\": 50\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,7 +162,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/produtos/21",
+					"raw": "http://localhost:8080/produtos/42",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -155,7 +170,7 @@
 					"port": "8080",
 					"path": [
 						"produtos",
-						"21"
+						"42"
 					]
 				}
 			},

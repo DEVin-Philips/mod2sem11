@@ -7,12 +7,14 @@ import br.senai.devinhouse.demoapi.models.Produto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProdutoMapper {
 
+    @Mapping(target = "categoria.id", source = "categoria_id")
     Produto map(ProdutoRequest source);
 
     @Mapping(target = "quantidadeEstoque", source = "qtdEstoque")
@@ -23,6 +25,9 @@ public interface ProdutoMapper {
     @Mapping(target = "categoria.id", source = "categoria_id")
     Produto map(ProdutoDetalhadoDTO source);
 
+    default Page<ProdutoResponse> map(Page<Produto> source) {
+        return source.map(this::map);
+    }
 
 
 

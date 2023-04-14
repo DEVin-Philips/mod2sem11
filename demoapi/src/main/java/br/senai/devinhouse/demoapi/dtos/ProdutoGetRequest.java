@@ -1,5 +1,8 @@
 package br.senai.devinhouse.demoapi.dtos;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 public class ProdutoGetRequest {
     private String nome;
     private Double precoMin;

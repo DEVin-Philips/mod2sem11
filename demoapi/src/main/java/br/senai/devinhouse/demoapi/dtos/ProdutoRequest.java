@@ -1,10 +1,17 @@
 package br.senai.devinhouse.demoapi.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class ProdutoRequest {
+    @NotBlank//(message = "nome é obrigatório")
     private String nome;
     private String descricao;
-    private double preco;
-    private int qtdEstoque;
+    @NotNull
+    private Double preco;
+    private Integer qtdEstoque;
+    @NotNull
+    private Integer categoria_id;
 
     public String getNome() {
         return nome;
@@ -36,5 +43,13 @@ public class ProdutoRequest {
 
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+    }
+
+    public Integer getCategoria_id() {
+        return categoria_id;
+    }
+
+    public void setCategoria_id(Integer categoria_id) {
+        this.categoria_id = categoria_id;
     }
 }

@@ -9,6 +9,7 @@ import br.senai.devinhouse.demoapi.models.Categoria;
 import br.senai.devinhouse.demoapi.models.Produto;
 import br.senai.devinhouse.demoapi.repositories.CategoriaRepository;
 import br.senai.devinhouse.demoapi.repositories.ProdutoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -36,14 +37,17 @@ public class ProdutoService {
     // ProdutoMapper mapper = Mappers.getMapper(ProdutoMapper.class);
 
     public ProdutoResponse busca(int id) {
-        return mapper.map(repository.findById(id).orElseThrow(RuntimeException::new));
+
+        Produto produto = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        return mapper.map(produto);
     }
 
     /*public List<Produto> busca(String nome) {
         return repository.findByAtivoAndNome('1', nome);
     }*/
 
-    public void cadastra(ProdutoRequest produtoRequest) {
+    public Produto cadastra(ProdutoRequest produtoRequest) {
 
         /*Produto produto = new Produto();
         produto.setNome(produtoRequest.getNome());
@@ -54,21 +58,23 @@ public class ProdutoService {
         //Produto produto = new Produto(produtoRequest);
 
         Produto produto = mapper.map(produtoRequest);
+        produto.setAtivo('1');
 
-        repository.save(produto);
+        return repository.save(produto);
     }
 
-    public List<ProdutoResponse> busca(ProdutoGetRequest requestParams) {
+    public Page<ProdutoResponse> busca(ProdutoGetRequest requestParams, Pageable paginacao) {
         if (requestParams.getNome() != null) {
-            return mapper.map(repository.findByAtivoAndNome('1', requestParams.getNome()));
+            return mapper.map(repository.findByAtivoAndNome('1', requestParams.getNome(), paginacao));
         } else if (requestParams.getPrecoMin() != null && requestParams.getPrecoMax() != null) {
             return mapper.map(
                     repository.findByAtivoAndPrecoBetween('1',
-                            requestParams.getPrecoMin(), requestParams.getPrecoMax()));
+                            requestParams.getPrecoMin(), requestParams.getPrecoMax(), paginacao));
         }
 
-        return mapper.map(repository.findByAtivo('1'));
+        return mapper.map(repository.findByAtivo('1', paginacao));
 
+        // return mapper.map(repository.findAll(paginacao));
     }
 
     public void atualiza(ProdutoDetalhadoDTO request){
